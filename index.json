@@ -1,0 +1,43 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-01-02T10:16:52.153Z",
+  "totalAnimations": 1,
+  "categories": {
+    "illustrations": [
+      "section-integration"
+    ]
+  },
+  "animations": {
+    "section-integration": {
+      "name": "Section Integration",
+      "category": "illustrations",
+      "description": "Integration section animation with multiple service icons",
+      "hasImages": true,
+      "imageCount": 20,
+      "urls": {
+        "original": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration/animation.json",
+        "metadata": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration/metadata.json",
+        "bundle": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/dist/section-integration/bundle.json"
+      },
+      "properties": {
+        "version": "5.9.0",
+        "frameRate": 30,
+        "frames": 450,
+        "duration": "15.00s",
+        "dimensions": "1200x1200"
+      },
+      "fileSize": {
+        "animation": "1.24 MB",
+        "images": "172.58 KB",
+        "total": "1.41 MB",
+        "bundle": "1.36 MB"
+      },
+      "tags": [
+        "integration",
+        "icons",
+        "services",
+        "section"
+      ]
+    }
+  }
+}

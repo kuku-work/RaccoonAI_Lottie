@@ -1,0 +1,25 @@
+{
+  "name": "Section Integration",
+  "id": "section-integration",
+  "description": "Integration section animation with multiple service icons",
+  "version": "1.0.0",
+  "author": "RaccoonAI",
+  "tags": ["integration", "icons", "services", "section"],
+  "category": "illustrations",
+  "hasImages": true,
+  "imageCount": 20,
+  "dimensions": {
+    "width": 1200,
+    "height": 1200
+  },
+  "duration": 15,
+  "frameRate": 30,
+  "frames": 450,
+  "fileSize": {
+    "animation": "1.3MB",
+    "images": "estimated",
+    "total": "estimated"
+  },
+  "createdAt": "2025-01-02",
+  "updatedAt": "2025-01-02"
+}

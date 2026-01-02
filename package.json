@@ -1,0 +1,32 @@
+{
+  "name": "raccoonai-lottie",
+  "version": "1.0.0",
+  "description": "RaccoonAI Lottie Animation Library - A collection of high-quality Lottie animations with CDN support",
+  "main": "index.json",
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "bundle": "node scripts/bundle.js",
+    "optimize": "node scripts/optimize.js",
+    "generate-index": "node scripts/generate-index.js",
+    "build": "npm run validate && npm run bundle && npm run optimize && npm run generate-index",
+    "preview": "node scripts/preview.js"
+  },
+  "keywords": [
+    "lottie",
+    "animation",
+    "raccoonai",
+    "cdn",
+    "web-animation"
+  ],
+  "author": "RaccoonAI",
+  "license": "MIT",
+  "devDependencies": {
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "sharp": "^0.33.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kuku-work/RaccoonAI_lottie.git"
+  }
+}

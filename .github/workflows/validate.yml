@@ -1,0 +1,61 @@
+name: Validate Animations
+
+on:
+  pull_request:
+    paths:
+      - 'animations/**'
+      - 'scripts/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'animations/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate all animations
+        run: npm run validate
+
+      - name: Check animation sizes
+        run: |
+          echo "Checking animation file sizes..."
+          find animations -name "*.json" -size +5M -exec echo "Warning: {} is larger than 5MB" \;
+
+      - name: Comment PR with validation results
+        if: github.event_name == 'pull_request' && failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Animation validation failed. Please check the logs for details.'
+            })
+
+      - name: Comment PR success
+        if: github.event_name == 'pull_request' && success()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ All animations validated successfully!'
+            })

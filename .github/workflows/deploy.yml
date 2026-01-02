@@ -1,0 +1,155 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate animations
+        run: npm run validate
+
+      - name: Bundle animations
+        run: npm run bundle
+
+      - name: Optimize animations
+        run: npm run optimize
+
+      - name: Generate index
+        run: npm run generate-index
+
+      - name: Prepare GitHub Pages
+        run: |
+          # Create a simple HTML viewer for GitHub Pages (optional)
+          cat > index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>RaccoonAI Lottie Animations</title>
+              <style>
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                      max-width: 1200px;
+                      margin: 0 auto;
+                      padding: 20px;
+                      background: #f5f5f5;
+                  }
+                  h1 {
+                      color: #333;
+                      border-bottom: 2px solid #007bff;
+                      padding-bottom: 10px;
+                  }
+                  .info {
+                      background: white;
+                      padding: 20px;
+                      border-radius: 8px;
+                      margin: 20px 0;
+                      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                  }
+                  code {
+                      background: #f0f0f0;
+                      padding: 2px 6px;
+                      border-radius: 3px;
+                      font-family: 'Courier New', monospace;
+                  }
+                  pre {
+                      background: #2d2d2d;
+                      color: #f8f8f2;
+                      padding: 15px;
+                      border-radius: 5px;
+                      overflow-x: auto;
+                  }
+                  .cdn-url {
+                      background: #e8f4f8;
+                      border-left: 4px solid #007bff;
+                      padding: 10px;
+                      margin: 10px 0;
+                  }
+              </style>
+          </head>
+          <body>
+              <h1>🦝 RaccoonAI Lottie Animation Library</h1>
+
+              <div class="info">
+                  <h2>CDN Usage</h2>
+                  <p>All animations are available via jsDelivr CDN:</p>
+
+                  <div class="cdn-url">
+                      <strong>Base URL:</strong><br>
+                      <code>https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/</code>
+                  </div>
+
+                  <h3>Available Formats:</h3>
+                  <ul>
+                      <li><strong>Original (with external images):</strong> <code>/animations/{name}/animation.json</code></li>
+                      <li><strong>Bundle (images embedded):</strong> <code>/dist/{name}/bundle.json</code></li>
+                      <li><strong>Minified:</strong> <code>/dist/{name}/animation.min.json</code></li>
+                  </ul>
+
+                  <h3>Example Usage:</h3>
+                  <pre>lottie.loadAnimation({
+    container: document.getElementById('container'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: 'https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration/animation.json'
+});</pre>
+
+                  <h3>Animation Index:</h3>
+                  <p>View all available animations: <a href="index.json">index.json</a></p>
+              </div>
+
+              <div class="info">
+                  <h2>Repository</h2>
+                  <p>View source and documentation: <a href="https://github.com/kuku-work/RaccoonAI_lottie">GitHub Repository</a></p>
+              </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Commit built files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A dist/ index.json index.html
+          git diff --staged --quiet || git commit -m "Build: Update bundled animations and index [skip ci]"
+          git push || echo "No changes to push"
+
+      - name: Setup Pages
+        if: github.ref == 'refs/heads/main'
+        uses: actions/configure-pages@v3
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        id: deployment
+        uses: actions/deploy-pages@v2
