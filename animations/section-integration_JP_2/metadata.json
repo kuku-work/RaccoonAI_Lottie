@@ -1,0 +1,25 @@
+{
+  "name": "Section Integration JP v2",
+  "id": "section-integration_JP_2",
+  "description": "日文版整合區塊動畫（第二版）",
+  "version": "1.0.0",
+  "author": "RaccoonAI",
+  "tags": ["integration", "section", "japanese", "jp"],
+  "category": "illustrations",
+  "hasImages": true,
+  "imageCount": 18,
+  "dimensions": {
+    "width": 1200,
+    "height": 1200
+  },
+  "duration": 15,
+  "frameRate": 60,
+  "frames": 900,
+  "fileSize": {
+    "animation": "5.9MB",
+    "images": "estimated",
+    "total": "estimated"
+  },
+  "createdAt": "2026-01-22",
+  "updatedAt": "2026-01-22"
+}
