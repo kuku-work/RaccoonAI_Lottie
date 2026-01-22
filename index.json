@@ -1,10 +1,11 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-02T10:16:52.153Z",
-  "totalAnimations": 1,
+  "generatedAt": "2026-01-22T11:12:34.491Z",
+  "totalAnimations": 2,
   "categories": {
     "illustrations": [
-      "section-integration"
+      "section-integration",
+      "section-integration_JP"
     ]
   },
   "animations": {
@@ -28,8 +29,8 @@
       },
       "fileSize": {
         "animation": "1.24 MB",
-        "images": "172.58 KB",
-        "total": "1.41 MB",
+        "images": "92.58 KB",
+        "total": "1.33 MB",
         "bundle": "1.36 MB"
       },
       "tags": [
@@ -37,6 +38,38 @@
         "icons",
         "services",
         "section"
+      ]
+    },
+    "section-integration_JP": {
+      "name": "Section Integration JP",
+      "category": "illustrations",
+      "description": "Integration section animation with Japanese localization",
+      "hasImages": true,
+      "imageCount": 18,
+      "urls": {
+        "original": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration_JP/animation.json",
+        "metadata": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration_JP/metadata.json",
+        "bundle": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/dist/section-integration_JP/bundle.json"
+      },
+      "properties": {
+        "version": "5.9.0",
+        "frameRate": 60,
+        "frames": 900,
+        "duration": "15.00s",
+        "dimensions": "1200x1200"
+      },
+      "fileSize": {
+        "animation": "5.82 MB",
+        "images": "49.65 KB",
+        "total": "5.87 MB",
+        "bundle": "1.25 MB"
+      },
+      "tags": [
+        "integration",
+        "icons",
+        "services",
+        "section",
+        "japanese"
       ]
     }
   }

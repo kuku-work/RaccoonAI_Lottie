@@ -2,12 +2,12 @@
   "name": "Section Integration JP",
   "id": "section-integration_JP",
   "description": "Integration section animation with Japanese localization",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "RaccoonAI",
   "tags": ["integration", "icons", "services", "section", "japanese"],
   "category": "illustrations",
   "hasImages": true,
-  "imageCount": 20,
+  "imageCount": 18,
   "dimensions": {
     "width": 1200,
     "height": 1200
@@ -17,9 +17,9 @@
   "frames": 900,
   "fileSize": {
     "animation": "1.3MB",
-    "images": "embedded",
-    "total": "1.3MB"
+    "images": "45KB",
+    "total": "1.35MB"
   },
   "createdAt": "2025-01-17",
-  "updatedAt": "2025-01-17"
+  "updatedAt": "2026-01-22"
 }
