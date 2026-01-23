@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-23T05:27:32.435Z",
+  "generatedAt": "2026-01-23T05:40:19.029Z",
   "totalAnimations": 2,
   "categories": {
     "illustrations": [
@@ -44,8 +44,8 @@
       "name": "Section Integration (Japanese)",
       "category": "illustrations",
       "description": "Integration section animation with multiple service icons - Japanese version",
-      "hasImages": true,
-      "imageCount": 18,
+      "hasImages": false,
+      "imageCount": 0,
       "urls": {
         "original": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration-ja/animation.json",
         "metadata": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/section-integration-ja/metadata.json",
@@ -59,10 +59,10 @@
         "dimensions": "1200x1200"
       },
       "fileSize": {
-        "animation": "5.87 MB",
-        "images": "49.65 KB",
-        "total": "5.91 MB",
-        "bundle": "1.32 MB"
+        "animation": "1.31 MB",
+        "images": "0 B",
+        "total": "1.31 MB",
+        "bundle": "1.31 MB"
       },
       "tags": [
         "integration",

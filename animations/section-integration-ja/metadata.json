@@ -17,8 +17,8 @@
   "frames": 900,
   "fileSize": {
     "animation": "1.3MB",
-    "images": "estimated",
-    "total": "estimated"
+    "images": "embedded",
+    "total": "1.3MB"
   },
   "createdAt": "2026-01-23",
   "updatedAt": "2026-01-23"
