@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RaccoonAI Lottie Animation Tester</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #16213e;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #0f3460;
+    }
+
+    .header h1 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #888;
+      font-size: 14px;
+    }
+
+    .container {
+      display: flex;
+      height: calc(100vh - 100px);
+    }
+
+    .sidebar {
+      width: 320px;
+      background: #16213e;
+      border-right: 1px solid #0f3460;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    .sidebar h2 {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .animation-list {
+      list-style: none;
+    }
+
+    .animation-item {
+      padding: 12px;
+      margin-bottom: 8px;
+      background: #1a1a2e;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .animation-item:hover {
+      background: #0f3460;
+    }
+
+    .animation-item.active {
+      border-color: #e94560;
+      background: #0f3460;
+    }
+
+    .animation-item h3 {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .animation-item p {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .animation-item .tags {
+      margin-top: 8px;
+    }
+
+    .animation-item .tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 6px;
+      background: #0f3460;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .preview-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #16213e;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #lottie-player {
+      width: 100%;
+      height: 100%;
+      max-width: 800px;
+      max-height: 800px;
+    }
+
+    .placeholder {
+      text-align: center;
+      color: #666;
+    }
+
+    .placeholder svg {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px;
+      background: #16213e;
+      border-radius: 12px;
+      margin-top: 16px;
+    }
+
+    .controls button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .controls button.primary {
+      background: #e94560;
+      color: white;
+    }
+
+    .controls button.primary:hover {
+      background: #ff6b6b;
+    }
+
+    .controls button.secondary {
+      background: #0f3460;
+      color: white;
+    }
+
+    .controls button.secondary:hover {
+      background: #1a4a7a;
+    }
+
+    .speed-control {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .speed-control input {
+      width: 100px;
+    }
+
+    .speed-control span {
+      font-size: 12px;
+      color: #888;
+      min-width: 40px;
+    }
+
+    .info-panel {
+      background: #16213e;
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+    }
+
+    .info-panel h3 {
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: #e94560;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .info-item {
+      background: #1a1a2e;
+      padding: 12px;
+      border-radius: 6px;
+    }
+
+    .info-item label {
+      display: block;
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .info-item value {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .source-selector {
+      margin-bottom: 16px;
+    }
+
+    .source-selector label {
+      display: block;
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 6px;
+    }
+
+    .source-selector select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #0f3460;
+      border-radius: 6px;
+      background: #1a1a2e;
+      color: #eee;
+      font-size: 12px;
+    }
+
+    .loading {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #888;
+    }
+
+    @keyframes spin {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    .loading.active::after {
+      content: '';
+      display: block;
+      width: 30px;
+      height: 30px;
+      border: 3px solid #0f3460;
+      border-top-color: #e94560;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>RaccoonAI Lottie Animation Tester</h1>
+    <p>Preview and test Lottie animations from the library</p>
+  </div>
+
+  <div class="container">
+    <div class="sidebar">
+      <div class="source-selector">
+        <label>Animation Source</label>
+        <select id="source-select">
+          <option value="local">Local Files (../animations/)</option>
+          <option value="dist">Dist Bundle (../dist/)</option>
+          <option value="cdn">CDN (jsdelivr)</option>
+        </select>
+      </div>
+
+      <h2>Animations</h2>
+      <ul class="animation-list" id="animation-list">
+        <li class="animation-item" style="color: #888; cursor: default;">
+          Loading animations...
+        </li>
+      </ul>
+    </div>
+
+    <div class="main">
+      <div class="preview-container">
+        <div id="lottie-player"></div>
+        <div class="placeholder" id="placeholder">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <p>Select an animation to preview</p>
+        </div>
+        <div class="loading" id="loading"></div>
+      </div>
+
+      <div class="controls">
+        <button class="primary" id="btn-play">Play</button>
+        <button class="secondary" id="btn-pause">Pause</button>
+        <button class="secondary" id="btn-stop">Stop</button>
+        <div class="speed-control">
+          <label>Speed:</label>
+          <input type="range" id="speed-slider" min="0.1" max="3" step="0.1" value="1">
+          <span id="speed-value">1x</span>
+        </div>
+        <label>
+          <input type="checkbox" id="loop-toggle" checked> Loop
+        </label>
+      </div>
+
+      <div class="info-panel" id="info-panel" style="display: none;">
+        <h3>Animation Info</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Name</label>
+            <value id="info-name">-</value>
+          </div>
+          <div class="info-item">
+            <label>Dimensions</label>
+            <value id="info-dimensions">-</value>
+          </div>
+          <div class="info-item">
+            <label>Duration</label>
+            <value id="info-duration">-</value>
+          </div>
+          <div class="info-item">
+            <label>Frame Rate</label>
+            <value id="info-framerate">-</value>
+          </div>
+          <div class="info-item">
+            <label>Total Frames</label>
+            <value id="info-frames">-</value>
+          </div>
+          <div class="info-item">
+            <label>File Size</label>
+            <value id="info-size">-</value>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentAnimation = null;
+    let animationData = null;
+    let indexData = null;
+
+    const elements = {
+      list: document.getElementById('animation-list'),
+      player: document.getElementById('lottie-player'),
+      placeholder: document.getElementById('placeholder'),
+      loading: document.getElementById('loading'),
+      infoPanel: document.getElementById('info-panel'),
+      sourceSelect: document.getElementById('source-select'),
+      btnPlay: document.getElementById('btn-play'),
+      btnPause: document.getElementById('btn-pause'),
+      btnStop: document.getElementById('btn-stop'),
+      speedSlider: document.getElementById('speed-slider'),
+      speedValue: document.getElementById('speed-value'),
+      loopToggle: document.getElementById('loop-toggle')
+    };
+
+    // Load index.json
+    async function loadIndex() {
+      try {
+        const response = await fetch('../index.json');
+        indexData = await response.json();
+        renderAnimationList();
+      } catch (error) {
+        console.error('Failed to load index.json:', error);
+        elements.list.innerHTML = `
+          <li class="animation-item" style="color: #e94560; cursor: default;">
+            Failed to load animations. Make sure to run this from a web server.
+          </li>
+        `;
+      }
+    }
+
+    // Render animation list
+    function renderAnimationList() {
+      if (!indexData || !indexData.animations) return;
+
+      elements.list.innerHTML = '';
+
+      Object.entries(indexData.animations).forEach(([id, anim]) => {
+        const li = document.createElement('li');
+        li.className = 'animation-item';
+        li.dataset.id = id;
+        li.innerHTML = `
+          <h3>${anim.name}</h3>
+          <p>${anim.properties.dimensions} | ${anim.properties.duration}</p>
+          <div class="tags">
+            ${anim.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+        `;
+        li.addEventListener('click', () => loadAnimation(id));
+        elements.list.appendChild(li);
+      });
+    }
+
+    // Get animation URL based on source
+    function getAnimationUrl(id) {
+      const source = elements.sourceSelect.value;
+      const anim = indexData.animations[id];
+
+      switch (source) {
+        case 'local':
+          return `../animations/${id}/animation.json`;
+        case 'dist':
+          return `../dist/${id}/bundle.json`;
+        case 'cdn':
+          return anim.urls.bundle;
+        default:
+          return `../animations/${id}/animation.json`;
+      }
+    }
+
+    // Load and play animation
+    async function loadAnimation(id) {
+      // Update active state
+      document.querySelectorAll('.animation-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.id === id);
+      });
+
+      // Show loading
+      elements.placeholder.style.display = 'none';
+      elements.loading.classList.add('active');
+      elements.loading.textContent = 'Loading...';
+
+      // Destroy previous animation
+      if (currentAnimation) {
+        currentAnimation.destroy();
+        currentAnimation = null;
+      }
+
+      try {
+        const url = getAnimationUrl(id);
+        console.log('Loading animation from:', url);
+
+        currentAnimation = lottie.loadAnimation({
+          container: elements.player,
+          renderer: 'svg',
+          loop: elements.loopToggle.checked,
+          autoplay: true,
+          path: url
+        });
+
+        currentAnimation.addEventListener('DOMLoaded', () => {
+          elements.loading.classList.remove('active');
+          elements.loading.textContent = '';
+          updateInfo(id);
+        });
+
+        currentAnimation.addEventListener('error', (error) => {
+          console.error('Animation error:', error);
+          elements.loading.classList.remove('active');
+          elements.loading.textContent = 'Failed to load animation';
+        });
+
+      } catch (error) {
+        console.error('Failed to load animation:', error);
+        elements.loading.classList.remove('active');
+        elements.loading.textContent = 'Failed to load animation';
+      }
+    }
+
+    // Update info panel
+    function updateInfo(id) {
+      const anim = indexData.animations[id];
+      if (!anim) return;
+
+      elements.infoPanel.style.display = 'block';
+      document.getElementById('info-name').textContent = anim.name;
+      document.getElementById('info-dimensions').textContent = anim.properties.dimensions;
+      document.getElementById('info-duration').textContent = anim.properties.duration;
+      document.getElementById('info-framerate').textContent = anim.properties.frameRate + ' fps';
+      document.getElementById('info-frames').textContent = anim.properties.frames;
+      document.getElementById('info-size').textContent = anim.fileSize.total;
+    }
+
+    // Control handlers
+    elements.btnPlay.addEventListener('click', () => {
+      if (currentAnimation) currentAnimation.play();
+    });
+
+    elements.btnPause.addEventListener('click', () => {
+      if (currentAnimation) currentAnimation.pause();
+    });
+
+    elements.btnStop.addEventListener('click', () => {
+      if (currentAnimation) currentAnimation.stop();
+    });
+
+    elements.speedSlider.addEventListener('input', (e) => {
+      const speed = parseFloat(e.target.value);
+      elements.speedValue.textContent = speed + 'x';
+      if (currentAnimation) currentAnimation.setSpeed(speed);
+    });
+
+    elements.loopToggle.addEventListener('change', (e) => {
+      if (currentAnimation) currentAnimation.loop = e.target.checked;
+    });
+
+    elements.sourceSelect.addEventListener('change', () => {
+      const activeItem = document.querySelector('.animation-item.active');
+      if (activeItem) {
+        loadAnimation(activeItem.dataset.id);
+      }
+    });
+
+    // Initialize
+    loadIndex();
+  </script>
+</body>
+</html>
