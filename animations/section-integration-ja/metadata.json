@@ -1,0 +1,25 @@
+{
+  "name": "Section Integration (Japanese)",
+  "id": "section-integration-ja",
+  "description": "Integration section animation with multiple service icons - Japanese version",
+  "version": "1.0.0",
+  "author": "RaccoonAI",
+  "tags": ["integration", "icons", "services", "section", "japanese"],
+  "category": "illustrations",
+  "hasImages": true,
+  "imageCount": 18,
+  "dimensions": {
+    "width": 1200,
+    "height": 1200
+  },
+  "duration": 15,
+  "frameRate": 60,
+  "frames": 900,
+  "fileSize": {
+    "animation": "1.3MB",
+    "images": "estimated",
+    "total": "estimated"
+  },
+  "createdAt": "2026-01-23",
+  "updatedAt": "2026-01-23"
+}
