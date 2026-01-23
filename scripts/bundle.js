@@ -49,8 +49,9 @@ function bundleAnimation(animationDir) {
     // Process assets
     if (animation.assets && animation.assets.length > 0) {
       animation.assets.forEach(asset => {
-        // Check if asset is an external image
-        if (asset.p && asset.u === 'images/' && !asset.e) {
+        // Check if asset is an image that needs embedding
+        // Check by p value (not base64 yet) instead of e flag, since some exports have e:1 but no actual embedding
+        if (asset.p && asset.u === 'images/' && !asset.p.startsWith('data:')) {
           hasImages = true;
           const imagePath = path.join(imagesDir, asset.p);
 
