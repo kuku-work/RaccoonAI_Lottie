@@ -1,11 +1,12 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-23T07:01:23.533Z",
-  "totalAnimations": 2,
+  "generatedAt": "2026-03-29T00:00:00.000Z",
+  "totalAnimations": 3,
   "categories": {
     "illustrations": [
       "section-integration",
-      "section-integration-ja"
+      "section-integration-ja",
+      "logo-carousel"
     ]
   },
   "animations": {
@@ -70,6 +71,38 @@
         "services",
         "section",
         "japanese"
+      ]
+    },
+    "logo-carousel": {
+      "name": "Logo Carousel",
+      "category": "illustrations",
+      "description": "Brand logo carousel animation with scrolling partner logos",
+      "hasImages": true,
+      "imageCount": 14,
+      "urls": {
+        "original": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/logo-carousel/animation.json",
+        "metadata": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/logo-carousel/metadata.json",
+        "bundle": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/dist/logo-carousel/bundle.json"
+      },
+      "properties": {
+        "version": "5.9.0",
+        "frameRate": 30,
+        "frames": 450,
+        "duration": "15.00s",
+        "dimensions": "1280x200"
+      },
+      "fileSize": {
+        "animation": "20.19 KB",
+        "images": "615.05 KB",
+        "total": "635.24 KB",
+        "bundle": "826.47 KB"
+      },
+      "tags": [
+        "logo",
+        "carousel",
+        "brand",
+        "partners",
+        "marquee"
       ]
     }
   }
