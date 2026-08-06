@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-06T09:38:38.825Z",
+  "generatedAt": "2026-08-06T10:47:40.177Z",
   "totalAnimations": 3,
   "categories": {
     "illustrations": [
@@ -29,7 +29,7 @@
         "dimensions": "1280x200"
       },
       "fileSize": {
-        "animation": "9.12 KB",
+        "animation": "9.25 KB",
         "images": "1.79 MB",
         "total": "1.80 MB",
         "bundle": "2.39 MB"
