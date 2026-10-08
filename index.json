@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-06T10:47:40.177Z",
+  "generatedAt": "2026-10-08T10:26:00.946Z",
   "totalAnimations": 3,
   "categories": {
     "illustrations": [
@@ -15,7 +15,7 @@
       "category": "illustrations",
       "description": "Brand logo carousel animation with scrolling partner logos",
       "hasImages": true,
-      "imageCount": 17,
+      "imageCount": 18,
       "urls": {
         "original": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/logo-carousel/animation.json",
         "metadata": "https://cdn.jsdelivr.net/gh/kuku-work/RaccoonAI_lottie@main/animations/logo-carousel/metadata.json",
@@ -24,15 +24,15 @@
       "properties": {
         "version": "5.9.0",
         "frameRate": 30,
-        "frames": 450,
-        "duration": "15.00s",
+        "frames": 500,
+        "duration": "16.67s",
         "dimensions": "1280x200"
       },
       "fileSize": {
-        "animation": "9.25 KB",
-        "images": "1.79 MB",
-        "total": "1.80 MB",
-        "bundle": "2.39 MB"
+        "animation": "9.81 KB",
+        "images": "1.80 MB",
+        "total": "1.81 MB",
+        "bundle": "2.41 MB"
       },
       "tags": [
         "logo",
