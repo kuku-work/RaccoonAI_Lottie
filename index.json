@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-10-12T08:37:50.303Z",
+  "generatedAt": "2026-10-12T08:50:34.476Z",
   "totalAnimations": 3,
   "categories": {
     "illustrations": [
@@ -24,12 +24,12 @@
       "properties": {
         "version": "5.9.0",
         "frameRate": 30,
-        "frames": 600,
-        "duration": "20.00s",
+        "frames": 596,
+        "duration": "19.87s",
         "dimensions": "1280x200"
       },
       "fileSize": {
-        "animation": "12.12 KB",
+        "animation": "12.13 KB",
         "images": "1.86 MB",
         "total": "1.87 MB",
         "bundle": "2.48 MB"
